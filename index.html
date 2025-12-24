@@ -212,3 +212,130 @@
     <h1>CLAY COUNTY</h1>
     <p>ILLINOIS • EST. 1824</p>
 </header>
+
+
+<style>
+    .sports-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        background: #1a1a1a; /* Dark background makes the gloss pop */
+        padding: 40px 20px;
+        justify-content: center;
+    }
+
+    .glossy-card {
+        flex: 1;
+        min-width: 320px;
+        max-width: 380px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+
+    .glossy-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* The "Shine" Overlay */
+    .card-header {
+        position: relative;
+        padding: 25px;
+        text-align: center;
+        color: white;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        overflow: hidden;
+    }
+
+    .card-header::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 50%;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+        pointer-events: none;
+    }
+
+    /* Glossy Color Gradients */
+    .louisville-gloss { background: linear-gradient(135deg, #ff3232 0%, #7b0000 100%); }
+    .flora-gloss { background: linear-gradient(135deg, #ff8c00 0%, #b24500 100%); }
+    .claycity-gloss { background: linear-gradient(135deg, #2196F3 0%, #0D47A1 100%); }
+
+    .card-body {
+        padding: 20px;
+        color: #e0e0e0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
+    }
+
+    .card-body h3 {
+        color: #fff;
+        margin-top: 0;
+        font-size: 1.1rem;
+        border-left: 4px solid rgba(255,255,255,0.3);
+        padding-left: 10px;
+    }
+
+    .scoreboard-container {
+        background: #fff;
+        border-radius: 0 0 20px 20px;
+        padding: 5px;
+    }
+
+    p { margin-bottom: 15px; }
+</style>
+
+<div class="sports-grid">
+
+    <div class="glossy-card">
+        <div class="card-header louisville-gloss">
+            Louisville
+        </div>
+        <div class="card-body">
+            <h3>North Clay Cardinals</h3>
+            <p>Louisville, the seat of Clay County, is the proud home of the North Clay Cardinals. The village thrives on its deep-rooted athletic traditions along the Little Wabash River.</p>
+        </div>
+        <div class="scoreboard-container">
+            <div class="scorestream-widget-container" data-ss_widget_type="vertScoreboard" style="height:600px;" data-user-widget-id="67745"></div>
+        </div>
+    </div>
+
+    <div class="glossy-card">
+        <div class="card-header flora-gloss">
+            Flora
+        </div>
+        <div class="card-body">
+            <h3>Flora Wolves</h3>
+            <p>As the largest city in the county, Flora (the "City of Trees") provides a high-energy sports atmosphere for the Wolves at Flora High School.</p>
+        </div>
+        <div class="scoreboard-container">
+            <div class="scorestream-widget-container" data-ss_widget_type="vertScoreboard" style="height:600px;" data-user-widget-id="67746"></div>
+        </div>
+    </div>
+
+    <div class="glossy-card">
+        <div class="card-header claycity-gloss">
+            Clay City
+        </div>
+        <div class="card-body">
+            <h3>Clay City Wolves</h3>
+            <p>On the eastern edge of Clay County, the village of Clay City rallies behind the Wolves, showcasing small-town pride and big-time competitive spirit.</p>
+        </div>
+        <div class="scoreboard-container">
+            <div class="scorestream-widget-container" data-ss_widget_type="vertScoreboard" style="height:600px;" data-user-widget-id="64637"></div>
+        </div>
+    </div>
+
+</div>
+
+<script async="async" type="text/javascript" src="https://scorestream.com/apiJsCdn/widgets/embed.js"></script>
