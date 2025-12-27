@@ -1,341 +1,150 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Clay County | Community Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Your Amazon Shopping List</title>
     <style>
-        :root {
-            --glass: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --accent-gold: #ffcc33;
-            --deep-blue: #0f2027;
-            --vibrant-blue: #203a43;
-            --text-light: #f1f1f1;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1f1f1; margin: 0; padding: 20px; color: #111; }
+        .container { max-width: 900px; margin: auto; }
+        h1 { text-align: center; color: #232f3e; font-size: 2.5em; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #555; margin-bottom: 40px; }
+        
+        /* Category Header */
+        .category-title { background: #232f3e; color: white; padding: 10px 20px; border-radius: 5px; margin: 40px 0 20px 0; font-size: 1.2em; text-transform: uppercase; letter-spacing: 1px; }
 
-        * {
-            box-sizing: border-box;
-            transition: all 0.3s ease;
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-left: 5px solid #ffd814;
         }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--text-light);
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            background-attachment: fixed;
-            min-height: 100vh;
-        }
-
-        /* Floating Support Box */
-        .support-badge {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            padding: 15px 25px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            color: var(--accent-gold);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            border-bottom: 3px solid var(--accent-gold);
-        }
-
-        .support-badge:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px);
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        header {
-            height: 60vh;
+        
+        .product-title { font-size: 1.5em; font-weight: bold; color: #007185; margin: 0 0 15px 0; text-decoration: none; display: block; }
+        
+        /* Customized Amazon Price Strip */
+        .price-strip {
+            background: #fdf8e2;
+            padding: 15px;
+            border-radius: 6px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover;
-            position: relative;
-            box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.5);
-            margin-bottom: 50px;
+            gap: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #fcd200;
         }
+        .current-price { font-size: 1.8em; font-weight: bold; color: #B12704; }
+        .list-price { color: #565959; text-decoration: line-through; font-size: 1.1em; }
+        .save-label { color: #CC0C39; font-weight: bold; font-size: 0.9em; }
 
-        header h1 {
-            font-size: 4rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
-
-        header p {
-            font-size: 1.5rem;
-            color: var(--accent-gold);
-            font-weight: 300;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        section {
-            padding: 60px 0;
-        }
-
-        h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: var(--white);
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            width: 100px;
-            height: 4px;
-            background: var(--accent-gold);
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-        }
-
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .glass-card:hover {
-            transform: scale(1.02);
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--accent-gold);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 40px;
-        }
-
-        .card-content h3 {
-            margin-top: 0;
-            color: var(--accent-gold);
-            font-size: 1.8rem;
-        }
-
-        .tag {
-            background: rgba(255, 204, 51, 0.2);
-            color: var(--accent-gold);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: bold;
+        .product-desc { line-height: 1.6; color: #444; margin-bottom: 20px; }
+        
+        .amazon-btn {
             display: inline-block;
-            margin-bottom: 15px;
+            background-color: #ffd814;
+            color: #0f1111;
+            padding: 12px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            border: 1px solid #fcd200;
+            transition: 0.2s;
         }
-
-        .full-width-glass {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 60px;
-            margin-top: 40px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .industry-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .industry-item {
-            padding: 20px;
-            border-left: 4px solid var(--accent-gold);
-            background: rgba(255,255,255,0.05);
-        }
-
-        footer {
-            text-align: center;
-            padding: 100px 20px;
-            background: rgba(0,0,0,0.3);
-            margin-top: 100px;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            .grid { grid-template-columns: 1fr; }
-            .support-badge { font-size: 0.7rem; padding: 10px 15px; }
-        }
+        .amazon-btn:hover { background-color: #f7ca00; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
-<div class="support-badge">
-    Support My Local Community
-</div>
+<div class="container">
+    <h1>Personalized Shopping Deals</h1>
+    <p class="subtitle">All items include your customized affiliate tracking.</p>
 
-<header>
-    <h1>CLAY COUNTY</h1>
-    <p>ILLINOIS • EST. 1824</p>
-</header>
+    <div class="category-title">Kitchen & Appliances</div>
 
-
-<style>
-    .sports-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 25px;
-        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-        background: #1a1a1a; /* Dark background makes the gloss pop */
-        padding: 40px 20px;
-        justify-content: center;
-    }
-
-    .glossy-card {
-        flex: 1;
-        min-width: 320px;
-        max-width: 380px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 20px;
-        position: relative;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        overflow: hidden;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    }
-
-    .glossy-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    /* The "Shine" Overlay */
-    .card-header {
-        position: relative;
-        padding: 25px;
-        text-align: center;
-        color: white;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        overflow: hidden;
-    }
-
-    .card-header::after {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 50%;
-        background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
-        pointer-events: none;
-    }
-
-    /* Glossy Color Gradients */
-    .louisville-gloss { background: linear-gradient(135deg, #ff3232 0%, #7b0000 100%); }
-    .flora-gloss { background: linear-gradient(135deg, #ff8c00 0%, #b24500 100%); }
-    .claycity-gloss { background: linear-gradient(135deg, #2196F3 0%, #0D47A1 100%); }
-
-    .card-body {
-        padding: 20px;
-        color: #e0e0e0;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
-    }
-
-    .card-body h3 {
-        color: #fff;
-        margin-top: 0;
-        font-size: 1.1rem;
-        border-left: 4px solid rgba(255,255,255,0.3);
-        padding-left: 10px;
-    }
-
-    .scoreboard-container {
-        background: #fff;
-        border-radius: 0 0 20px 20px;
-        padding: 5px;
-    }
-
-    p { margin-bottom: 15px; }
-</style>
-
-<div class="sports-grid">
-
-    <div class="glossy-card">
-        <div class="card-header louisville-gloss">
-            Louisville
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/DeLonghi-Explore-Automatic-Espresso-Machine/dp/B0CGL7878G?tag=kevin08b2-20">DeLonghi Eletta Explore Espresso Machine</a>
+        <div class="price-strip">
+            <span class="current-price">$1,699.95</span>
+            <span class="list-price">$1,999.99</span>
+            <span class="save-label">YOU SAVE $300.04 (15%)</span>
         </div>
-        <div class="card-body">
-            <h3>North Clay Cardinals</h3>
-            <p>Louisville, the seat of Clay County, is the proud home of the North Clay Cardinals. The village thrives on its deep-rooted athletic traditions along the Little Wabash River.</p>
-        </div>
-        <div class="scoreboard-container">
-            <div class="scorestream-widget-container" data-ss_widget_type="vertScoreboard" style="height:600px;" data-user-widget-id="67745"></div>
-        </div>
+        <p class="product-desc">The ultimate coffee lover's machine. Features Cold Extraction Technology for authentic Cold Brew and over 50 hot and cold recipe presets.</p>
+        <a href="https://www.amazon.com/DeLonghi-Explore-Automatic-Espresso-Machine/dp/B0CGL7878G?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
     </div>
 
-    <div class="glossy-card">
-        <div class="card-header flora-gloss">
-            Flora
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/Dyson-Purifier-Smart-White-Silver/dp/B09LT8THGS?tag=kevin08b2-20">Dyson Purifier Cool™ Smart Air Purifier</a>
+        <div class="price-strip">
+            <span class="current-price">$504.00</span>
+            <span class="list-price">$649.99</span>
+            <span class="save-label">YOU SAVE $145.99 (22%)</span>
         </div>
-        <div class="card-body">
-            <h3>Flora Wolves</h3>
-            <p>As the largest city in the county, Flora (the "City of Trees") provides a high-energy sports atmosphere for the Wolves at Flora High School.</p>
-        </div>
-        <div class="scoreboard-container">
-            <div class="scorestream-widget-container" data-ss_widget_type="vertScoreboard" style="height:600px;" data-user-widget-id="67746"></div>
-        </div>
+        <p class="product-desc">HEPA H13 filtration removes 99.97% of pollutants. Doubles as a powerful cooling fan with smart sensing technology.</p>
+        <a href="https://www.amazon.com/Dyson-Purifier-Smart-White-Silver/dp/B09LT8THGS?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
     </div>
 
-    <div class="glossy-card">
-        <div class="card-header claycity-gloss">
-            Clay City
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/KitchenAid-KFC3516VB-Food-Chopper-Velvet/dp/B08GXXW613?tag=kevin08b2-20">KitchenAid 3.5 Cup Food Chopper</a>
+        <div class="price-strip">
+            <span class="current-price">$44.99</span>
+            <span class="list-price">$64.99</span>
+            <span class="save-label">YOU SAVE $20.00 (31%)</span>
         </div>
-        <div class="card-body">
-            <h3>Clay City Wolves</h3>
-            <p>On the eastern edge of Clay County, the village of Clay City rallies behind the Wolves, showcasing small-town pride and big-time competitive spirit.</p>
+        <p class="product-desc">Compact and efficient. Perfect for chopping ingredients, making dressings, and everyday meal preparation.</p>
+        <a href="https://www.amazon.com/KitchenAid-KFC3516VB-Food-Chopper-Velvet/dp/B08GXXW613?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+    </div>
+
+    <div class="category-title">Clothing & Apparel</div>
+
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/Ekouaer-Womens-Jogger-Gingham-Pyjamas/dp/B0D846XPG7?tag=kevin08b2-20">Ekouaer Women's Gingham Pajama Set</a>
+        <div class="price-strip">
+            <span class="current-price">$24.99</span>
+            <span class="list-price">$38.99</span>
+            <span class="save-label">YOU SAVE $14.00 (36%)</span>
         </div>
-        <div class="scoreboard-container">
-            <div class="scorestream-widget-container" data-ss_widget_type="vertScoreboard" style="height:600px;" data-user-widget-id="64637"></div>
+        <p class="product-desc">Soft long-sleeve top paired with stylish gingham joggers. Perfect for lounging in comfort and style.</p>
+        <a href="https://www.amazon.com/Ekouaer-Womens-Jogger-Gingham-Pyjamas/dp/B0D846XPG7?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+    </div>
+
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/COOFANDY-Sleeve-Business-Wrinkle-Wedding/dp/B0D4MPY4Z2?tag=kevin08b2-20">COOFANDY Men's Wrinkle-Free Business Shirt</a>
+        <div class="price-strip">
+            <span class="current-price">$20.49</span>
+            <span class="list-price">$29.99</span>
+            <span class="save-label">YOU SAVE $9.50 (32%)</span>
         </div>
+        <p class="product-desc">Stay sharp without the iron. This wrinkle-resistant fabric is ideal for business, weddings, or casual outings.</p>
+        <a href="https://www.amazon.com/COOFANDY-Sleeve-Business-Wrinkle-Wedding/dp/B0D4MPY4Z2?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+    </div>
+
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/Arshiner-Hoodies-Sweatshirt-Pullover-Kangaroo/dp/B0CH8JHMXQ?tag=kevin08b2-20">Arshiner Girls' Pullover Hoodie</a>
+        <div class="price-strip">
+            <span class="current-price">$29.49</span>
+            <span class="list-price">$39.99</span>
+            <span class="save-label">YOU SAVE $10.50 (26%)</span>
+        </div>
+        <p class="product-desc">Trendy waffle-knit design with a kangaroo pocket. Soft, durable, and perfect for school or weekend play.</p>
+        <a href="https://www.amazon.com/Arshiner-Hoodies-Sweatshirt-Pullover-Kangaroo/dp/B0CH8JHMXQ?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+    </div>
+
+    <div class="category-title">Home & Decor</div>
+
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/KINLINK-Picture-Composite-Tabletop-Mounting/dp/B09YH6N12Z?tag=kevin08b2-20">KINLINK 4x6 Picture Frame Set (Multiple Packs)</a>
+        <div class="price-strip">
+            <span class="current-price">$18.67</span>
+            <span class="list-price">$24.99</span>
+            <span class="save-label">YOU SAVE $6.32 (25%)</span>
+        </div>
+        <p class="product-desc">Eco-friendly composite wood frames for tabletop or wall mounting. Protect your favorite memories with clean, modern styling.</p>
+        <a href="https://www.amazon.com/KINLINK-Picture-Composite-Tabletop-Mounting/dp/B09YH6N12Z?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
     </div>
 
 </div>
 
-<script async="async" type="text/javascript" src="https://scorestream.com/apiJsCdn/widgets/embed.js"></script>
+</body>
+</html>
