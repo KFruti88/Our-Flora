@@ -3,145 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Amazon Shopping List</title>
+    <title>Amazon Shopping Deals</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1f1f1; margin: 0; padding: 20px; color: #111; }
-        .container { max-width: 900px; margin: auto; }
-        h1 { text-align: center; color: #232f3e; font-size: 2.5em; margin-bottom: 10px; }
-        .subtitle { text-align: center; color: #555; margin-bottom: 40px; }
+        /* Amazon Color Palette */
+        :root {
+            --amazon-navy: #232f3e;
+            --amazon-orange: #ff9900;
+            --amazon-light-bg: #eaeded;
+            --amazon-blue-link: #007185;
+            --amazon-price-red: #B12704;
+            --amazon-button-yellow: #ffd814;
+            --amazon-button-border: #fcd200;
+        }
+
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--amazon-light-bg); margin: 0; padding: 0; color: #111; }
         
-        /* Category Header */
-        .category-title { background: #232f3e; color: white; padding: 10px 20px; border-radius: 5px; margin: 40px 0 20px 0; font-size: 1.2em; text-transform: uppercase; letter-spacing: 1px; }
+        /* Header Strip */
+        header { background-color: var(--amazon-navy); color: white; padding: 15px 20px; text-align: center; }
+        header h1 { margin: 0; font-size: 1.8em; }
+
+        .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+        
+        .category-header { font-size: 1.4em; font-weight: bold; margin: 30px 0 15px 0; border-bottom: 2px solid var(--amazon-orange); display: inline-block; padding-bottom: 5px; }
 
         .product-card {
             background: #fff;
-            border-radius: 10px;
-            padding: 25px;
+            border-radius: 8px;
+            padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-left: 5px solid #ffd814;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
         }
         
-        .product-title { font-size: 1.5em; font-weight: bold; color: #007185; margin: 0 0 15px 0; text-decoration: none; display: block; }
+        .product-title { font-size: 1.3em; font-weight: bold; color: var(--amazon-blue-link); text-decoration: none; display: block; margin-bottom: 8px; }
+        .product-title:hover { color: #c45500; text-decoration: underline; }
         
-        /* Customized Amazon Price Strip */
+        /* Customized Price Strip */
         .price-strip {
-            background: #fdf8e2;
-            padding: 15px;
-            border-radius: 6px;
+            background-color: #fdf8e2; /* Light yellow attention strip */
+            border: 1px solid var(--amazon-button-border);
+            padding: 12px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #fcd200;
+            gap: 12px;
+            margin-bottom: 15px;
         }
-        .current-price { font-size: 1.8em; font-weight: bold; color: #B12704; }
-        .list-price { color: #565959; text-decoration: line-through; font-size: 1.1em; }
-        .save-label { color: #CC0C39; font-weight: bold; font-size: 0.9em; }
+        .current-price { font-size: 1.6em; font-weight: bold; color: var(--amazon-price-red); }
+        .list-price { color: #565959; text-decoration: line-through; font-size: 0.9em; }
+        .savings-tag { background: #CC0C39; color: white; padding: 2px 6px; border-radius: 2px; font-size: 0.8em; font-weight: bold; }
 
-        .product-desc { line-height: 1.6; color: #444; margin-bottom: 20px; }
+        .desc { font-size: 0.95em; line-height: 1.5; color: #333; margin-bottom: 20px; }
         
-        .amazon-btn {
+        /* Amazon Styled Button */
+        .btn {
             display: inline-block;
-            background-color: #ffd814;
+            background-color: var(--amazon-button-yellow);
             color: #0f1111;
-            padding: 12px 35px;
+            padding: 10px 30px;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            border: 1px solid #fcd200;
-            transition: 0.2s;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9em;
+            border: 1px solid var(--amazon-button-border);
+            box-shadow: 0 2px 5px rgba(213,217,217,.5);
         }
-        .amazon-btn:hover { background-color: #f7ca00; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn:hover { background-color: #f7ca00; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Personalized Shopping Deals</h1>
-    <p class="subtitle">All items include your customized affiliate tracking.</p>
+<header>
+    <h1>Your Curated Amazon Deals</h1>
+</header>
 
-    <div class="category-title">Kitchen & Appliances</div>
+<div class="container">
+
+    <div class="category-header">Appliances & Home Tech</div>
 
     <div class="product-card">
-        <a class="product-title" href="https://www.amazon.com/DeLonghi-Explore-Automatic-Espresso-Machine/dp/B0CGL7878G?tag=kevin08b2-20">DeLonghi Eletta Explore Espresso Machine</a>
+        <a class="product-title" href="https://www.amazon.com/DeLonghi-Explore-Automatic-Espresso-Machine/dp/B0CGL7878G?tag=kevin08b2-20">DeLonghi Eletta Explore Automatic Espresso Machine</a>
         <div class="price-strip">
             <span class="current-price">$1,699.95</span>
             <span class="list-price">$1,999.99</span>
-            <span class="save-label">YOU SAVE $300.04 (15%)</span>
+            <span class="savings-tag">15% OFF</span>
         </div>
-        <p class="product-desc">The ultimate coffee lover's machine. Features Cold Extraction Technology for authentic Cold Brew and over 50 hot and cold recipe presets.</p>
-        <a href="https://www.amazon.com/DeLonghi-Explore-Automatic-Espresso-Machine/dp/B0CGL7878G?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+        <p class="desc">Brews over 50 hot and cold coffee recipes. Features Cold Extraction Technology for authentic Cold Brew in under 3 minutes.</p>
+        <a href="https://www.amazon.com/DeLonghi-Explore-Automatic-Espresso-Machine/dp/B0CGL7878G?tag=kevin08b2-20" class="btn">View on Amazon</a>
     </div>
 
     <div class="product-card">
-        <a class="product-title" href="https://www.amazon.com/Dyson-Purifier-Smart-White-Silver/dp/B09LT8THGS?tag=kevin08b2-20">Dyson Purifier Cool™ Smart Air Purifier</a>
+        <a class="product-title" href="https://www.amazon.com/Dyson-Purifier-Smart-White-Silver/dp/B09LT8THGS?tag=kevin08b2-20">Dyson Purifier Cool™ Smart Air Purifier TP07</a>
         <div class="price-strip">
             <span class="current-price">$504.00</span>
             <span class="list-price">$649.99</span>
-            <span class="save-label">YOU SAVE $145.99 (22%)</span>
+            <span class="savings-tag">22% OFF</span>
         </div>
-        <p class="product-desc">HEPA H13 filtration removes 99.97% of pollutants. Doubles as a powerful cooling fan with smart sensing technology.</p>
-        <a href="https://www.amazon.com/Dyson-Purifier-Smart-White-Silver/dp/B09LT8THGS?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+        <p class="desc">Senses and captures pollutants automatically. Fully sealed HEPA H13 filtration system removes 99.97% of allergens.</p>
+        <a href="https://www.amazon.com/Dyson-Purifier-Smart-White-Silver/dp/B09LT8THGS?tag=kevin08b2-20" class="btn">View on Amazon</a>
     </div>
 
     <div class="product-card">
-        <a class="product-title" href="https://www.amazon.com/KitchenAid-KFC3516VB-Food-Chopper-Velvet/dp/B08GXXW613?tag=kevin08b2-20">KitchenAid 3.5 Cup Food Chopper</a>
+        <a class="product-title" href="https://www.amazon.com/iRobot-Roomba-Combo-Robot-Vacuum/dp/B0DWG2BB7X?tag=kevin08b2-20">iRobot Roomba Combo 10 Max Robot Vacuum & Mop</a>
         <div class="price-strip">
-            <span class="current-price">$44.99</span>
-            <span class="list-price">$64.99</span>
-            <span class="save-label">YOU SAVE $20.00 (31%)</span>
+            <span class="current-price">$529.00</span>
+            <span class="list-price">$799.99</span>
+            <span class="savings-tag">34% OFF</span>
         </div>
-        <p class="product-desc">Compact and efficient. Perfect for chopping ingredients, making dressings, and everyday meal preparation.</p>
-        <a href="https://www.amazon.com/KitchenAid-KFC3516VB-Food-Chopper-Velvet/dp/B08GXXW613?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+        <p class="desc">The most advanced 2-in-1. AutoWash dock empties the bin, refills the tank, and washes the mop pad automatically.</p>
+        <a href="https://www.amazon.com/iRobot-Roomba-Combo-Robot-Vacuum/dp/B0DWG2BB7X?tag=kevin08b2-20" class="btn">View on Amazon</a>
     </div>
 
-    <div class="category-title">Clothing & Apparel</div>
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/Tineco-Floor-One-Artist-Anti-Tangle/dp/B0FC64RCDX?tag=kevin08b2-20">Tineco Floor One Artist Wet/Dry Vacuum</a>
+        <div class="price-strip">
+            <span class="current-price">$399.00</span>
+            <span class="list-price">$599.99</span>
+            <span class="savings-tag">33% OFF</span>
+        </div>
+        <p class="desc">HyperSteam technology liquefies grease. Features a 180° lay-flat design to reach under furniture easily.</p>
+        <a href="https://www.amazon.com/Tineco-Floor-One-Artist-Anti-Tangle/dp/B0FC64RCDX?tag=kevin08b2-20" class="btn">View on Amazon</a>
+    </div>
+
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/KitchenAid-Variable-Corded-Blender-KHBV53/dp/B08F2TGH2M?tag=kevin08b2-20">KitchenAid Variable Speed Corded Hand Blender</a>
+        <div class="price-strip">
+            <span class="current-price">$44.99</span>
+            <span class="list-price">$59.99</span>
+            <span class="savings-tag">25% OFF</span>
+        </div>
+        <p class="desc">Removable 8" blending arm with 4-point stainless steel blade. Perfect for smoothies, soups, and hummus.</p>
+        <a href="https://www.amazon.com/KitchenAid-Variable-Corded-Blender-KHBV53/dp/B08F2TGH2M?tag=kevin08b2-20" class="btn">View on Amazon</a>
+    </div>
+
+    <div class="category-header">Clothing & Apparel</div>
 
     <div class="product-card">
         <a class="product-title" href="https://www.amazon.com/Ekouaer-Womens-Jogger-Gingham-Pyjamas/dp/B0D846XPG7?tag=kevin08b2-20">Ekouaer Women's Gingham Pajama Set</a>
         <div class="price-strip">
             <span class="current-price">$24.99</span>
-            <span class="list-price">$38.99</span>
-            <span class="save-label">YOU SAVE $14.00 (36%)</span>
+            <span class="list-price">$36.99</span>
+            <span class="savings-tag">32% OFF</span>
         </div>
-        <p class="product-desc">Soft long-sleeve top paired with stylish gingham joggers. Perfect for lounging in comfort and style.</p>
-        <a href="https://www.amazon.com/Ekouaer-Womens-Jogger-Gingham-Pyjamas/dp/B0D846XPG7?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+        <p class="desc">Cozy long-sleeve top and jogger-style plaid bottoms. Features soft, breathable fabric for a perfect night's sleep.</p>
+        <a href="https://www.amazon.com/Ekouaer-Womens-Jogger-Gingham-Pyjamas/dp/B0D846XPG7?tag=kevin08b2-20" class="btn">View on Amazon</a>
     </div>
 
     <div class="product-card">
         <a class="product-title" href="https://www.amazon.com/COOFANDY-Sleeve-Business-Wrinkle-Wedding/dp/B0D4MPY4Z2?tag=kevin08b2-20">COOFANDY Men's Wrinkle-Free Business Shirt</a>
         <div class="price-strip">
             <span class="current-price">$20.49</span>
-            <span class="list-price">$29.99</span>
-            <span class="save-label">YOU SAVE $9.50 (32%)</span>
+            <span class="list-price">$32.99</span>
+            <span class="savings-tag">38% OFF</span>
         </div>
-        <p class="product-desc">Stay sharp without the iron. This wrinkle-resistant fabric is ideal for business, weddings, or casual outings.</p>
-        <a href="https://www.amazon.com/COOFANDY-Sleeve-Business-Wrinkle-Wedding/dp/B0D4MPY4Z2?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+        <p class="desc">A sharp, easy-care shirt perfect for business, weddings, or casual events. Wrinkle-resistant fabric stays crisp all day.</p>
+        <a href="https://www.amazon.com/COOFANDY-Sleeve-Business-Wrinkle-Wedding/dp/B0D4MPY4Z2?tag=kevin08b2-20" class="btn">View on Amazon</a>
     </div>
 
     <div class="product-card">
-        <a class="product-title" href="https://www.amazon.com/Arshiner-Hoodies-Sweatshirt-Pullover-Kangaroo/dp/B0CH8JHMXQ?tag=kevin08b2-20">Arshiner Girls' Pullover Hoodie</a>
+        <a class="product-title" href="https://www.amazon.com/Arshiner-Hoodies-Sweatshirt-Pullover-Kangaroo/dp/B0CH8JHMXQ?tag=kevin08b2-20">Arshiner Girls' Pullover Hoodie Sweatshirt</a>
         <div class="price-strip">
             <span class="current-price">$29.49</span>
-            <span class="list-price">$39.99</span>
-            <span class="save-label">YOU SAVE $10.50 (26%)</span>
+            <span class="list-price">$38.99</span>
+            <span class="savings-tag">24% OFF</span>
         </div>
-        <p class="product-desc">Trendy waffle-knit design with a kangaroo pocket. Soft, durable, and perfect for school or weekend play.</p>
-        <a href="https://www.amazon.com/Arshiner-Hoodies-Sweatshirt-Pullover-Kangaroo/dp/B0CH8JHMXQ?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+        <p class="desc">Trendy waffle knit design with a kangaroo pocket. Stylish and comfortable for school or weekend wear.</p>
+        <a href="https://www.amazon.com/Arshiner-Hoodies-Sweatshirt-Pullover-Kangaroo/dp/B0CH8JHMXQ?tag=kevin08b2-20" class="btn">View on Amazon</a>
     </div>
 
-    <div class="category-title">Home & Decor</div>
+    <div class="category-header">Home, Tools & Decor</div>
 
     <div class="product-card">
-        <a class="product-title" href="https://www.amazon.com/KINLINK-Picture-Composite-Tabletop-Mounting/dp/B09YH6N12Z?tag=kevin08b2-20">KINLINK 4x6 Picture Frame Set (Multiple Packs)</a>
+        <a class="product-title" href="https://www.amazon.com/DEWALT-Oscillating-Tool-3-Speed-DCS356C1/dp/B085B253MD?tag=kevin08b2-20">DEWALT 20V MAX XR Oscillating Tool Kit</a>
+        <div class="price-strip">
+            <span class="current-price">$102.57</span>
+            <span class="list-price">$219.00</span>
+            <span class="savings-tag">53% OFF</span>
+        </div>
+        <p class="desc">Powerful brushless motor with a 3-speed selector. Includes battery, charger, and various accessories for precise cutting.</p>
+        <a href="https://www.amazon.com/DEWALT-Oscillating-Tool-3-Speed-DCS356C1/dp/B085B253MD?tag=kevin08b2-20" class="btn">View on Amazon</a>
+    </div>
+
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/Zinus-Mattress-Fiberglass-Isolation-Certified/dp/B0CKYYF9SJ?tag=kevin08b2-20">Zinus 10 Inch Cloud Memory Foam Mattress</a>
+        <div class="price-strip">
+            <span class="current-price">$229.00</span>
+            <span class="list-price">$329.00</span>
+            <span class="savings-tag">30% OFF</span>
+        </div>
+        <p class="desc">Fiberglass-free and CertiPUR-US certified. Designed with plush memory foam for pressure relief and motion isolation.</p>
+        <a href="https://www.amazon.com/Zinus-Mattress-Fiberglass-Isolation-Certified/dp/B0CKYYF9SJ?tag=kevin08b2-20" class="btn">View on Amazon</a>
+    </div>
+
+    <div class="product-card">
+        <a class="product-title" href="https://www.amazon.com/KINLINK-Picture-Composite-Tabletop-Mounting/dp/B09YH6N12Z?tag=kevin08b2-20">KINLINK 4x6 Picture Frame Set</a>
         <div class="price-strip">
             <span class="current-price">$18.67</span>
             <span class="list-price">$24.99</span>
-            <span class="save-label">YOU SAVE $6.32 (25%)</span>
+            <span class="savings-tag">25% OFF</span>
         </div>
-        <p class="product-desc">Eco-friendly composite wood frames for tabletop or wall mounting. Protect your favorite memories with clean, modern styling.</p>
-        <a href="https://www.amazon.com/KINLINK-Picture-Composite-Tabletop-Mounting/dp/B09YH6N12Z?tag=kevin08b2-20" class="amazon-btn">Shop Now</a>
+        <p class="desc">High-quality composite wood frames for your favorite photos. Versatile design for both tabletop display and wall mounting.</p>
+        <a href="https://www.amazon.com/KINLINK-Picture-Composite-Tabletop-Mounting/dp/B09YH6N12Z?tag=kevin08b2-20" class="btn">View on Amazon</a>
     </div>
 
 </div>
